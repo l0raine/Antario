@@ -20,7 +20,7 @@ public: // Function members
     void InitDeviceObjects      (LPDIRECT3DDEVICE9 pDevice);
     void RestoreDeviceObjects   (LPDIRECT3DDEVICE9 pDevice);
     void InvalidateDeviceObjects();
-    void SetupRenderStates      ();
+    void SetupRenderStates      () const;
 
 
     // Drawing functions
@@ -44,7 +44,7 @@ public: // Function members
 
 private: // Variable members
     LPDIRECT3DDEVICE9 pDevice;
-    D3DVIEWPORT9      pViewPort;
+    D3DVIEWPORT9      pViewPort{};
 };
 extern DrawManager g_Render;
 

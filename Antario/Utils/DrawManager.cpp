@@ -196,7 +196,7 @@ void DrawManager::String(float posx, float posy, DWORD dwFlags, Color color, CD3
 {
     D3DCOLOR dwColor = COL2DWORD(color);
     posx = std::roundf(posx); posy = std::roundf(posy);
-    pFont->DrawString(posx, posy, dwColor, szText, dwFlags);    // To make life easier
+    pFont->DrawString(posx, posy, dwColor, szText, dwFlags);
 }
 
 
@@ -204,7 +204,7 @@ void DrawManager::String(float posx, float posy, DWORD dwFlags, Color color, CD3
 *   SetupRenderStates - Sets RenderStates for our custom StateBlock
 *   It's required to draw everything independent on game settings.
 */
-void DrawManager::SetupRenderStates()
+void DrawManager::SetupRenderStates() const
 {
     this->pDevice->SetVertexShader(nullptr);
     this->pDevice->SetPixelShader(nullptr);

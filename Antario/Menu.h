@@ -72,7 +72,6 @@ protected:
     virtual void AddButton     (std::string strLabel, void(&fnPointer)(), Vector2D vecButtonSize = Vector2D(0, 0));
     virtual void AddCombo      (std::string strLabel, std::vector<std::string> vecBoxOptions, int* iVecIndex);
 
-protected:
     std::vector<std::shared_ptr<MenuMain>> vecChildren;
     MenuMain*   pParent;
     std::string strLabel;           /* Label / Name of the window.                                  */
@@ -146,6 +145,21 @@ private:
 
 
 
+class Slider : public MenuMain
+{
+public:
+    Slider(std::string strLabel, float* flValue, MenuMain* pParent);
+    Slider(std::string strLabel, int*   iValue,  MenuMain* pParent);
+    virtual void Render();
+    virtual void UpdateData();
+private:
+    bool   bIsFloatSlider = false;
+    float* flValue;
+    int*   iValue;
+};
+
+
+
 class ComboBox : public MenuMain
 {
 public:
@@ -155,11 +169,12 @@ public:
 
     virtual Vector2D GetSelectableSize();
 private:
-    bool bIsActive;                             /* Boolean defining if we are supposed to draw our menu or not. */
-    bool bIsButtonHeld;
-    bool bIsHovered;
-    int  idHovered;
-    int* iCurrentValue;                         /* Current selected option. Defined as a vector index.          */
+    bool  bIsActive;                            /* Boolean defining if we are supposed to draw our list or not. */
+    bool  bIsButtonHeld;
+    bool  bIsHovered;
+    int   idHovered;            
+    int*  iCurrentValue;                        /* Current selected option. Defined as a vector index.          */
+    Vector2D vecSelectableSize;                 /* Size of the internal selectable size of the combo            */
+    Vector2D vecSelectablePosition;             /* Position of the selectable                                   */
     std::vector<std::string> vecSelectables;    /* Vector of strings that will appear as diff settings.         */
-    Vector2D vecButtonPosition;                 /* Position of the button activating our dropdown menu          */
 };
